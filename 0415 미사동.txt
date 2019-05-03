@@ -1,0 +1,147 @@
+*디버깅
+: 버그를 잡는 것 
+
+-문장이 실행되는 곳에 Breakpoint 찍어야 함
+-주요 길목을 잡아내야해 
+
+-step into
+: 함수콜이 있으면 함수 다 쫓아감
+자세히 볼 필요있을 때 사용
+
+-step out
+: 함수콜로 함수를 한 줄씩 살펴보던 과정을  빠져나가겠다. 
+
+-stop over
+: 함수콜이 있어도 함수를 다 안 쫓아가고 결과만 살펴봄 
+
+
+
+ex. if문 조건 
+
+*Run과 Debug
+: Run 상태는 브레이크포인트 찍어놔도 안 섬 
+
+=================================
+*bookmark 설정
+F11: 북마크 설정
+shift+F11 : 전체 북마크 보기
+
+전체 북마크 보기에서 연필을 클릭하면 이름을 변경할 수도 있음
+
+=================================
+*go to 기능 
+: 코드의 라인에서 우클릭  GO TO 에서
+Declaration
+Implementaion 확인 가능  
+
+=================================
+*http 의 header 와 html의 head
+
+            if True: #헤더는 있어야 파일이 들어왔는지 확인할 수 있음
+                self.send_response(200)
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()  #http의 headers
+
+                # Send the html message
+                self.wfile.write(bytes("<html><head><title>Title goes here.</title></head>", "utf-8"))  #html 의 head
+                self.wfile.write(bytes("<body><p>This is a test.</p>", "utf-8"))
+                # self.wfile.write(bytes("<p>%s:" %url[0], "utf-8"))
+                # self.wfile.write(bytes(": %s</p>" %url[1], "utf-8"))
+
+                self.wfile.write(bytes("<p>city: %s</p>" % city, "utf-8"))
+                self.wfile.write(bytes("<p>zipcode: %s</p>" % zipcode, "utf-8"))
+                self.wfile.write(bytes("<p>mobile: %s</p>" % mobile, "utf-8"))
+                self.wfile.write(bytes("<p>nickname: %s</p>" % nickname, "utf-8"))
+
+                self.wfile.write(bytes("<body><p>This is a test.</p>", "utf-8"))
+
+                self.wfile.write(bytes("<p>You accessed path: %s</p>" % self.path, "utf-8"))
+                self.wfile.write(bytes("</body></html>", "utf-8"))
+
+            else:
+                self.send_response(400, 'Bad Request: record does not exist')
+                self.send_header('Content-Type', 'application/json')
+                self.end_headers()
+
+
+
+
+
+===============================
+***POST 방식
+: 정보를 url 이 아닌 내용에 넣음 
+-GET 방식과 차이 중 큰 것은 외견상 깔끔한 url
+
+form-data: 포스트맨에서 데이터 입력
+
+raw : json 타입으로 Key 와 Value를 body에 직접 실음 
+
+*POST 의 함수들 
+
+import json
+import cgi
+
+1)post_data = self.rfile.read(content_length)
+:본문의 길이만큼 읽어서 post_data에 넣어라
+content_length 는 포스트맨에서 자동생성
+
+2)json.loads()
+String을 Dictionary 로 바꿔줌
+
+3)json.dumps()
+Dictionary 를 다시 String으로 바꿔줌 
+wfile 할 때는 Dictionary 못 들어가고 String만 들어갈 수 있기 때문
+
+===============================
+*application/json
+: json 타입으로 작성된 파일이다
+- 약속된 값
+
+
+===============================
+*CGI
+
+다양한 콘텐츠(jpg. text. json. form<E>) 등을 
+Webrowser 내의 CGI 모듈이 라이브러리를 사용하여 공통 처리
+
+ex.Apache, ILS, WebLogic, FLASK, DJANGO 
+
+================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
